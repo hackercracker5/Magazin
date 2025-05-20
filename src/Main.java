@@ -1,5 +1,34 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
+class Stock
+{
+    private String id="";
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    private boolean  isFood;
+
+    public boolean getIsFood() {
+            return isFood;
+    }
+
+    public void setIsFood(boolean isFood) {
+        this.isFood = isFood;
+    }
+
+    private double price;
+    public double getPrice() {
+        return price;
+    }
+    public void setPrice(double price)
+    {
+        this.price = price;
+    }
+}
 public class Main {
     public static void main(String[] args) {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
