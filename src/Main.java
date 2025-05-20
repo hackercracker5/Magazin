@@ -1,7 +1,13 @@
-
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 class Stock
 {
     private String id="";
+    private String name;
+    private double price;
+    private boolean  isFood;
+    private LocalDate expirationDate;
+
 
     public String getId() {
         return id;
@@ -10,7 +16,15 @@ class Stock
     public void setId(String id) {
         this.id = id;
     }
-    private boolean  isFood;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 
     public boolean getIsFood() {
             return isFood;
@@ -20,7 +34,7 @@ class Stock
         this.isFood = isFood;
     }
 
-    private double price;
+
     public double getPrice() {
         return price;
     }
@@ -28,7 +42,16 @@ class Stock
     {
         this.price = price;
     }
+
+    public LocalDate getExpirationDate() {
+        return expirationDate;
+    }
+    public void setExpirationDate(LocalDate expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
 }
+
 public class Main {
     public static void main(String[] args) {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
