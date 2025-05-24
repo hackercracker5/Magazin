@@ -62,7 +62,7 @@ class Stock
     }
 
 
-    Stock(String id, String name, double price, boolean isFood, LocalDate expirationDate, int quantitiy)
+    public Stock(String id, String name, double price, boolean isFood, LocalDate expirationDate, int quantitiy)
     {
         setId(id);
         setName(name);
@@ -113,6 +113,52 @@ class Employee{
         setSalary(salary);
     }
 }
+
+class Checkout
+{
+    private String assignedEmployee;
+    private String employeeId;
+    private String id;
+
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    public String getId()
+    {
+        return id;
+    }
+
+
+    public String getEmployeeId()
+    {
+        return employeeId;
+    }
+    public void setEmployeeId(String employeeId)
+    {
+        this.employeeId = employeeId;
+    }
+
+
+    public String getAssignedEmployee()
+    {
+        return assignedEmployee;
+    }
+    public void setAssignedEmployee(String assignedEmployee)
+    {
+        this.assignedEmployee = assignedEmployee;
+    }
+
+
+    public Checkout(String assignedEmployee, String employeeId, String id)
+    {
+        setAssignedEmployee(assignedEmployee);
+        setEmployeeId(employeeId);
+        setId(id);
+    }
+}
+
+
 
 public class Main {
     public static void main(String[] args) {
