@@ -6,7 +6,7 @@ import java.util.List;
 class Stock
 {
     private String id="";
-    private String name;
+    private String name="";
     private double localPrice;
     private boolean  isFood;
     private LocalDate expirationDate;
@@ -116,8 +116,7 @@ class Employee{
 
 class Checkout
 {
-    private String assignedEmployee;
-    private String employeeId;
+    private Employee assignedEmployee;
     private String id;
 
 
@@ -129,32 +128,66 @@ class Checkout
         return id;
     }
 
-
-    public String getEmployeeId()
-    {
-        return employeeId;
-    }
-    public void setEmployeeId(String employeeId)
-    {
-        this.employeeId = employeeId;
-    }
-
-
-    public String getAssignedEmployee()
+    public Employee getAssignedEmployee()
     {
         return assignedEmployee;
     }
-    public void setAssignedEmployee(String assignedEmployee)
-    {
+
+    public void setAssignedEmployee(Employee assignedEmployee) {
         this.assignedEmployee = assignedEmployee;
     }
 
-
-    public Checkout(String assignedEmployee, String employeeId, String id)
+    public Checkout(Employee assignedEmployee,String id)
     {
         setAssignedEmployee(assignedEmployee);
-        setEmployeeId(employeeId);
         setId(id);
+    }
+}
+
+class Store
+{
+    private int foodPercentage;
+    private int noFoodPercentage;
+    public List<Checkout> checkouts;
+    public List<Employee> employees;
+    public List<Stock> stocks;
+    private void PublicPrice()
+    {
+        for(Stock s : stocks) {
+            if (s.getIsFood() == true)
+                s.setPrice(s.getLocalPrice() + s.getLocalPrice() * foodPercentage / 100);
+            else
+                s.setPrice(s.getLocalPrice()+s.getLocalPrice() * noFoodPercentage / 100);
+        }
+    }
+    private static boolean IsValidQuantity(Stock stock)
+    {
+        if (stock.getQuantitiy() > 0)
+            return true;
+        else
+        {
+            stock.setQuantitiy(0);
+            return false;
+        }
+    }
+    private static boolean IsValidDate(Stock stock)
+    {
+        if (stock.getExpirationDate().isBefore(LocalDate.now())) {
+            return false;
+
+        }
+        return true;
+    }
+    public static void Buy(Stock stock) throws InsufficientStockException
+    {
+        if (IsValidQuantity(stock)&&IsValidDate(stock))
+        {
+            stock.setQuantitiy(stock.getQuantitiy() - 1);
+        }
+        else
+            if (!IsValidQuantity(stock))
+                throw new InsufficientStockException(stock.getId(), stock.getName());
+
     }
 }
 
@@ -162,14 +195,35 @@ class Checkout
 
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
+            //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
-
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        Stock stock=new Stock("r2t4t4","Kola",5.65,true,LocalDate.of(2026, 1, 8),5);
+        System.out.println("Hello and welcome!");
+        Store store = new Store();
+        try {
+            Store.Buy(stock);
+            Store.Buy(stock);
+            Store.Buy(stock);
+            Store.Buy(stock);
+            Store.Buy(stock);
+            Store.Buy(stock);
+            Store.Buy(stock);
+            Store.Buy(stock);
+            Store.Buy(stock);
+            Store.Buy(stock);
+            Store.Buy(stock);
+            Store.Buy(stock);
+            Store.Buy(stock);
+            Store.Buy(stock);
+            Store.Buy(stock);
+            Store.Buy(stock);
+            Store.Buy(stock);
         }
+        catch (InsufficientStockException e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+
     }
 }
